@@ -1,7 +1,11 @@
 console.log('이 폴더는 리액트 생성용');
+import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TextField from '@material-ui/core/TextField';
+
+import {ImportTestComponent} from './importTest.js';
+
 
 const Name = '승승';
 const Greeting = '안녕하세요~ 여기서 테스트용 리액트 컴포넌트를 넣으시오';
@@ -12,16 +16,29 @@ const handleChange = (e) =>{
 
 const TestComponent = ({greeting,name}) => <h1>{name}님 {greeting}</h1>
 
-ReactDOM.render(
-    <TextField
-        id="standard-name"
-        label="Name"
-        className="wrap"
-        defaultValue=""
-        onChange={handleChange}
-    />
-, document.querySelector('#root'));
+const $root = $('#root');
+if($root.length){
+    ReactDOM.render(
+        <TextField
+            id="standard-name"
+            label="Name"
+            className="wrap"
+            defaultValue=""
+            onChange={handleChange}
+        />
+    , $root[0]);
+}
 
-ReactDOM.render(
-    <TestComponent name={Name}  greeting={Greeting}></TestComponent>
-, document.querySelector('#test'));
+const $test = $('#test');
+if($test.length){
+    ReactDOM.render(
+        <TestComponent name={Name}  greeting={Greeting}></TestComponent>
+        , $test[0]);
+}
+
+const $importTest = $('#importTest');
+if($importTest.length){
+    ReactDOM.render(
+        <ImportTestComponent name={Name}  greeting={Greeting}></ImportTestComponent>
+        , $importTest[0]);
+}
