@@ -9,8 +9,8 @@ const gutil = require('gulp-util'),
     cssmin = require('gulp-cssmin'),
     gcmq = require('gulp-group-css-media-queries'),
     jshint = require('gulp-jshint'),
-    // babel = require('gulp-babel'),
-    // uglify = require('gulp-uglify'),
+    babel = require('gulp-babel'),
+    uglify = require('gulp-uglify'),
     template = require('gulp-template'),
     filemapGenerator = require('gulp-filemap-generator'),
     browsersync = require("browser-sync").create(),
@@ -21,11 +21,42 @@ const gutil = require('gulp-util'),
     jsdoc = require('gulp-jsdoc3'),
     jsdoc2md = require('jsdoc-to-markdown'),
     cached = require('gulp-cached'),
-    webpack  = require('webpack-stream'),
+    webpackStream  = require('webpack-stream'),
     named = require('vinyl-named'),
     origin = "source",
     project = "build",
     docs = "docs";
+
+const webpackConfig = {
+    watch: false,
+    mode: 'development',
+    output: {
+        filename: 'entry.js',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/env','@babel/preset-react']
+                    }
+                }
+            }
+        ]
+    },
+    optimization: {
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+              vendors: {
+                  filename: 'entry.bundle.js'
+              }
+          }
+        },
+    },
+}
 
 const clean = async (done) => {
     await del([`${project}`]);
@@ -44,7 +75,7 @@ const html = ()=> src([`${origin}/**/*.html`, `!${origin}/include/*.html`, `!${o
     .pipe(htmlhint('hint/.htmlhintrc'))
     .pipe(template())
     .pipe(dest(`${project}`))
-    .pipe(browsersync.stream());
+    // .pipe(browsersync.stream());
 
 const generateFilemap = () => src([`${project}/**/*.html`, `!${origin}/include/*.html`, `!${origin}/map.html`], {since: lastRun(html)})
     .pipe(filemapGenerator({
@@ -64,32 +95,26 @@ const generateFilemap = () => src([`${project}/**/*.html`, `!${origin}/include/*
     .pipe(dest(`${project}`))
 
 
-const scripts = ()=> src(`${origin}/js/**/*.js`, {since: lastRun(scripts)})
+const react = ()=> src(`${origin}/js/react/entry.js`) //, {since: lastRun(react)}
+    // .pipe(newer(`${project}/js/react/entry.js`))
+    .pipe(webpackStream(webpackConfig,
+        // compiler,
+        // function(err, stats) {
+        //     console.log('err : ', err);
+        // }
+    ))
+    .pipe(dest(`${project}/js/react`))
+
+const scripts = ()=> src([`${origin}/js/**/*.js`, `!${origin}/js/react/**/*.js`], {since: lastRun(scripts)})
     .pipe(newer(`${project}/js/**/*.js`))
     .pipe(plumber({errorHandler : gutil.log}))
     .pipe(jshint())
-    .pipe(named())
-    // .pipe(babel({
-    //     presets: ['@babel/env']
-    // }))
-    // .pipe(uglify())
-    .pipe(webpack({
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/env','@babel/preset-react']
-                        }
-                    }
-                }
-            ]
-        }
+    .pipe(babel({
+        presets: ['@babel/env']
     }))
+    .pipe(uglify())
     .pipe(dest(`${project}/js`))
-    .pipe(browsersync.stream());
+    // .pipe(browsersync.stream());
 
 
 const styles = () => src([`${origin}/styles/**/*.{scss,sass}`,`!${origin}/styles/import/**/*.{scss,sass}`], {since: lastRun(styles)})
@@ -103,7 +128,7 @@ const styles = () => src([`${origin}/styles/**/*.{scss,sass}`,`!${origin}/styles
     }))
     .pipe(cssmin())
     .pipe(dest(`${project}/styles`))
-    .pipe(browsersync.stream());;
+    // .pipe(browsersync.stream());
 
 const images = () => src([
         `${origin}/images/**/*.{gif,jpeg,jpg,png,svg}`,
@@ -163,14 +188,15 @@ const api = (done) => {
 const watcher = () => {
     watch([`${origin}/html/**/*.html`, `${origin}/json/**/*.json`], html).on('change', browsersync.reload);
     watch([`${origin}/styles/**/*.{scss,sass.css}`], styles).on('change', browsersync.reload);
-    watch([`${origin}/js/**/*.js`], scripts).on('change', browsersync.reload);
+    watch([`${origin}/js/**/*.js`, `!${origin}/js/react/**/*.js`], scripts).on('change', browsersync.reload);
+    watch([`${origin}/js/react/**/*.js`], react).on('change', browsersync.reload);
     watch([`${origin}/images/**/*.{gif,jpeg,jpg,png,svg}`], images).on('change', browsersync.reload);
 }
 
-exports.default = series(clean, parallel(html, scripts, styles, images), generateFilemap, parallel(browserSyncInit, watcher) );
+exports.default = series(clean, parallel(html, scripts, react, styles, images), generateFilemap, parallel(browserSyncInit, watcher) );
 exports.filemap = generateFilemap;
 exports.clean = clean;
-exports.pack = series(clean, parallel(html, scripts, styles, images), packing);
+exports.pack = series(clean, parallel(html, scripts, react, styles, images), packing);
 exports.docs = series(cleanDocs, parallel(sassdocfy, jsdocfy));
 exports.api = api;
 

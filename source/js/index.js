@@ -1,4 +1,1 @@
-ReactDOM.render(
-    <h1>Hello, world!</h1>,
-    document.getElementById('root')
-);
+console.log('이 폴더에는 자유롭게 js 파일 생성');
