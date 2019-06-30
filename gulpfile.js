@@ -95,7 +95,7 @@ const generateFilemap = () => src([`${project}/**/*.html`, `!${origin}/include/*
     .pipe(dest(`${project}`))
 
 
-const react = ()=> src(`${origin}/js/react/*-entry.js`) //, {since: lastRun(react)}
+const react = ()=> src(`${origin}/js/react/entry.js`) //, {since: lastRun(react)}
     // .pipe(newer(`${project}/js/react/entry.js`))
     .pipe(named())
     .pipe(webpackStream(webpackConfig,

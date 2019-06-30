@@ -10,17 +10,28 @@
 <link rel="stylesheet" type="text/css" href="/styles/test.css" />
 </head>
 <body>
-<div class="wrap" id="root">
-  테스트 페이지
+<div class="wrap">
+  @@include('header.html')
+  <div class="contents">
+
+  </div>
+  @@include('nav.html')
 </div>
-<div class="wrap" id="test">
-  테스트 컴포넌트
+
+<div id="importTest">
+</div>
+
+<div id="root">
+  root 테스트 페이지
+</div>
+<div id="test">
+  test 테스트 컴포넌트
 </div>
 <div class="test">
   테스트 scss
 </div>
-<script src="/js/index.js"></script>
-<script src="/js/react/index-entry.js"></script>
+
+
 @@include('foot.html')
 </body>
 </html>
