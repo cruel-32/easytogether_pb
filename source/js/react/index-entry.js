@@ -44,14 +44,12 @@ if($test.length){
 
 const $importTest = $('#importTest');
 if($importTest.length){
-    console.log('importTest')
     ReactDOM.render(
         <ImportTestComponent name={Name}  greeting={Greeting}></ImportTestComponent>
         , $importTest[0]);
 }
 
 const $myInfo = $('.myInfo');
-console.log($myInfo)
 if($myInfo.length){
     console.log('MyPage')
     ReactDOM.render(

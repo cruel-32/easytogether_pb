@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function MyProfile(params) {
+export const MyPage = (params) => {
   const classes = useStyles();
   const editMyInfo = () => {
     alert('Edit my infomation!!')
@@ -71,5 +71,4 @@ export default function MyProfile(params) {
   );
 }
 
-export const MyPage = (params) => MyProfile(params);
 console.log('my page load');
