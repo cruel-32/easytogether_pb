@@ -9,3 +9,13 @@
         @content;
     }
 }
+
+@mixin mediaQuery($size) {
+    @media screen and (max-width: getSize($size)) {
+        @content;
+    }
+}
+
+@mixin vw-converter($property ,$size, $val) {
+    #{$property}: ($val / ($size * 0.01)) + vw
+}

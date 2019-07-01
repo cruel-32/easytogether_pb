@@ -1,0 +1,12 @@
+@import 'import/_mixin';
+@import 'import/_variables';
+
+@include mediaQuery(md){
+    .login-wrap {
+        .login-header {
+            >h1 {
+                @include vw-converter(font-size, 768, 20);
+            }
+        }
+    }
+}

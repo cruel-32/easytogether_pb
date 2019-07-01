@@ -23,7 +23,7 @@ if($root.length){
     ReactDOM.render(
         <TextField
             id="standard-name"
-            label="Name"
+            label="ID"
             className="wrap"
             defaultValue=""
             onChange={handleChange}

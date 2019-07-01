@@ -17,9 +17,9 @@ const movieList = [
 
 class MovieApps extends Component {
 
-    state = {
-        greeting: "hello!"
-    }
+    // state = {
+    //     greeting: "hello!"
+    // }
 
     //render : componentWillMount => render => componentDidMount
     //update : componentWillReceiveProps() => shouldComponentUpdate() => componentWillUpdate() => render() => componentDidUpdate()
@@ -44,6 +44,13 @@ class MovieApps extends Component {
                 greeting: "Hello! Movie Apps!"
             })
         }, 5000);
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            greeting: "hello!"
+        }
     }
 
     render() {
