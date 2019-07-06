@@ -2,18 +2,8 @@ console.log("movie apps");
 
 import React, { Component } from 'react';
 import MovieList from './MovieList';
-
-const movieList = [
-    {
-        title: "a"
-    },
-    {
-        title: "b"
-    },
-    {
-        title: "c"
-    }
-];
+import 'babel-polyfill';
+import { throws } from 'assert';
 
 class MovieApps extends Component {
 
@@ -39,11 +29,7 @@ class MovieApps extends Component {
 
     componentDidMount() {
         console.log("DidMount");
-        setTimeout(() => {
-            this.setState({
-                greeting: "Hello! Movie Apps!"
-            })
-        }, 5000);
+        this._getMovie();
     }
 
     constructor(props) {
@@ -53,16 +39,39 @@ class MovieApps extends Component {
         }
     }
 
+    _callApi = () => {
+        return fetch("https://yts.lt/api/v2/list_movies.json?sort_by=rating").then(
+            response => response.json()
+        ).then(
+            json => json.data.movies
+        ).catch(
+            err => console.log(err)
+        )
+    }
+
+    _getMovie = async () => {
+        const movie = await this._callApi();
+        this.setState({
+            movie
+        })
+    }
+
+    _renderMovie = () => {
+        const movie = this.state.movie.map((movie, index) => {
+            return <MovieList title={movie.title} image={movie.medium_cover_image} key={index} />
+        });
+
+        return movie;
+    }
+
     render() {
         console.log("render");
         return (
             <div className="movie-wrap">
                 <h1>{this.state.greeting}</h1>
-                {
-                    movieList.map((movie, index) => {
-                        return <MovieList title={movie.title} key={index} />
-                    })
-                }
+                <ul className="movie-list">
+                    {this.state.movie ? this._renderMovie() : "Loading..."}
+                </ul>
             </div>
         )
     }

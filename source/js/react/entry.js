@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 
 import {ImportTestComponent} from './importTest.js';
 import MovieApps from './movieApps/MovieApps';
+import LoginApps from './login/LoginApps';
 
 
 const Name = '승승';
@@ -19,6 +20,7 @@ const TestComponent = ({greeting,name}) => <h1>{name}님 {greeting}</h1>
 
 const $root = $('#root');
 const $movie = $('#movie');
+const $login = $('#login-form');
 if($root.length){
     ReactDOM.render(
         <TextField
@@ -47,4 +49,8 @@ if($importTest.length){
 
 if($movie.length){
     ReactDOM.render(<MovieApps />, document.getElementById("movie"));
+}
+
+if($login.length){
+    ReactDOM.render(<LoginApps />, document.getElementById("login-form"));
 }

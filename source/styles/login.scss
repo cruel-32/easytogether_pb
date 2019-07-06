@@ -2,10 +2,80 @@
 @import 'import/_variables';
 
 @include mediaQuery(md){
-    .login-wrap {
-        .login-header {
-            >h1 {
-                @include vw-converter(font-size, 768, 20);
+    body{
+
+        a {
+            color:#fff;
+        }
+
+        position:relative;
+        background:#408ad7;
+        .login-wrap {
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            font-family:'Roboto', sans-serif;
+            .login-header {
+                @include vw-converter(margin-bottom, 768, 25);
+                text-align:center;
+                >h1 {
+                    @include vw-converter(font-size, 768, 40);
+                    color:#fff;
+                }
+            }
+
+            .login-main {
+                #login-form {
+                    form {
+                        text-align:center;
+                        .login-text-input {
+                            display:block;
+                            margin:10px 0 0;
+                            label {
+                                font-family:'Roboto', sans-serif;
+                                color:#fff;
+                            }
+    
+                            .MuiInput-underline:after {
+                                border-bottom-color:#fff;
+                            }
+    
+                            .MuiInput-underline:before {
+                                border-bottom-color:#fff;
+                            }
+    
+                            .MuiInputBase-input {
+                                color:#fff;
+                            }
+                        }
+                        .btn-login {
+                            @include vw-converter(margin-top, 768, 25);
+                        }
+                    }
+                }
+            }
+
+            .login-footer {
+                @include vw-converter(margin-top, 768, 15);
+                text-align:center;
+                .btn-login-with {
+                    @include vw-converter(font-size, 768, 16);
+                }
+                .login-list {
+                    @include vw-converter(margin-top, 768, 15);
+                    li {
+                        @include vw-converter(margin-top, 768, 10);
+                        a {
+                            display:block;
+                            background:#3f51b5;
+                            @include vw-converter(padding-top, 768, 10);
+                            @include vw-converter(padding-bottom, 768, 10);
+                            @include vw-converter(border-radius, 768, 5);
+                            @include vw-converter(font-size, 768, 14);
+                        }
+                    }
+                }
             }
         }
     }
