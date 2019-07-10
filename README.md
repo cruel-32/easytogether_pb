@@ -1,4 +1,4 @@
-# easy together publishing
+# MoMo publishing
 ## 프로젝트 시작 전 gulp 설치 :
 ###
 ```
