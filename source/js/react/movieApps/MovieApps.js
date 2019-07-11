@@ -3,7 +3,6 @@ console.log("movie apps");
 import React, { Component } from 'react';
 import MovieList from './MovieList';
 import 'babel-polyfill';
-import { throws } from 'assert';
 
 class MovieApps extends Component {
 
@@ -49,8 +48,8 @@ class MovieApps extends Component {
         )
     }
 
-    _getMovie = async () => {
-        const movie = await this._callApi();
+    _getMovie = async () => { //async 비동기 실행?
+        const movie = await this._callApi(); //await -> this._callApi()가 사용 가능할때까지 기다림
         this.setState({
             movie
         })
@@ -58,7 +57,14 @@ class MovieApps extends Component {
 
     _renderMovie = () => {
         const movie = this.state.movie.map((movie, index) => {
-            return <MovieList title={movie.title} image={movie.medium_cover_image} key={index} />
+            return <MovieList 
+                        title={movie.title}
+                        image={movie.medium_cover_image}
+                        genres={movie.genres}
+                        summary={movie.summary}
+                        rating={movie.rating}
+                        key={movie.id}
+                    />
         });
 
         return movie;
