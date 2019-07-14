@@ -12,6 +12,8 @@ body{
 .mypage {
 	.in {
 		position: relative;
+		max-width: 800px;
+		margin: auto;
 		.thumbnail {
 	    	display: inline-block;
 			width: 100px;

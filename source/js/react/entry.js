@@ -45,26 +45,8 @@ if($wrap.length){
         </React.Fragment>
         , $wrap[0]);
 }
-<<<<<<< HEAD
 
-// MyPage
-import {MyPage} from './mypage.js';
-const JoinInfo = {
-    'id' : '승승승승',
-    'date' : '2019년 01월 01일',
-}
-
-const $myInfo = $('.myInfo');
-if($myInfo.length){
-    console.log('MyPage')
-    ReactDOM.render(
-        <MyPage name={Name} joinInfo = {JoinInfo}></MyPage>
-        , $myInfo[0]);
-}
-=======
 //mypage
 import Mypage from './Mypage';
 const $mypage = $('#mypage');
 ReactDOM.render(<Mypage />, $mypage[0]);
->>>>>>> 191c9db... commit
-
