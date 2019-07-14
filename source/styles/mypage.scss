@@ -1,0 +1,44 @@
+$bgcolor: #eee;
+
+body{
+	padding: 0;
+	margin: 0;
+	background: $bgcolor;
+	h1 {
+		@extend body
+	}
+}
+
+.mypage {
+	.in {
+		position: relative;
+		.thumbnail {
+	    	display: inline-block;
+			width: 100px;
+			border: 1px solid $bgcolor;
+			border-radius: 100%;
+			overflow: hidden;
+	    	img {width: 100%;height: auto;}
+	    }
+	    .info-form{
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			min-height: 100%;
+			background: $bgcolor;
+		}
+		.info > p {
+			text-align: center;
+		}
+		.box {
+			text-align: center;
+			>div {
+				display: flex;
+				margin: 20px;
+
+			}
+		}
+	}
+}
