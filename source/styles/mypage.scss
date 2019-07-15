@@ -1,46 +1,177 @@
-$bgcolor: #eee;
+@import './reset';
 
-body{
-	padding: 0;
-	margin: 0;
-	background: $bgcolor;
-	h1 {
-		@extend body
-	}
+$bgG : linear-gradient(#535f87, #4e3a71);
+$text-default: #fff;
+$text-light: #b5adc7;
+$boder-default: #b5adc7;
+
+
+.subpage-head {
+    display: block;
+    color: $text-light;
+    font-size: 1.25em;
+    font-weight: 400;
+    text-align: left;
 }
 
 .mypage {
-	.in {
-		position: relative;
-		max-width: 800px;
-		margin: auto;
-		.thumbnail {
-	    	display: inline-block;
-			width: 100px;
-			border: 1px solid $bgcolor;
+    min-height: 100vh;
+    background: $bgG;
+    color: $text-default;
+    
+    .MuiInputBase-input,
+    .MuiTypography-colorTextSecondary {
+        $color: $text-default; 
+        color: $color;
+        &.Mui-focused {
+            color: $color;
+        }
+    }
+    .MuiInputBase-root,
+    .MuiFormLabel-root {
+        $color: $text-light; 
+        color: $color;
+        &.Mui-focused {
+            color: $color;
+        }
+    }
+    .MuiInput-underline:after,
+    .MuiInput-underline:before,
+    .MuiInput-underline:hover:not(.Mui-disabled):before,
+    .MuiInput-underline:hover:not(.Mui-disabled):before {
+        border-color: $boder-default;
+    }
+    > .in {
+        article {
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+            &.list {
+                ul {
+                    display: flex;
+                    li {
+                        display: flex;
+                        flex: 1;
+                        button {
+                            position: relative;
+                            display: block;
+                            width: 100%;
+                            min-height: 50px;
+                            padding: 0 0 20px;
+                            text-align: center;
+                            color: $text-light;
+                            .label {
+                                position: absolute;
+                                left: 0;
+                                bottom: 0;
+                                width: 100%;
+                                font-size: 0.9em;
+                                text-align: center;
+                            }
+                            .count {
+                                display: block;
+                                font-size: 1.5em;
+                                color: $text-default;
+                            }
+                        }
+                    }
+                }
+            }
+            &.links {
+                padding: 15px 0;
+                text-align: left;
+                
+                ul {
+                    li {
+                        $boder-default : #b5adc72b;
+                        border-bottom: 1px solid $boder-default;
+                        &:first-child {
+                            border-top: 1px solid $boder-default;
+                        }
+                        a {
+                            display: block;
+                            padding: 15px;
+                            color: $text-default;
+                            text-decoration: none;
+                            box-sizing: border-box;
+                        }
+                    }
+                }
+            }
+            .head {
+                position: relative;
+                padding: 15px;
+                box-shadow: 0px 10px 10px #2c214682;
+                h1 {
+                    @extend  .subpage-head;
+                    >em {
+                        font-size: 0.8em;
+                        margin-left: 10px;
+                    }
+                }
+                .btn {
+                    position: absolute;
+                    right: 15px;
+                    top: 15px;
+                    display: inline-block;
+                    min-width: auto;
+                    height: 20px;
+                    padding: 0;
+                    color: $text-light;
+                    &.close {
+                        top: 10px;
+                        right: 10px;
+                    }
+                }
+            }
+            .foot {
+                padding: 20px 30px;
+                .btn {
+                    &.primary {
+                        display: block;
+                        width: 100%;
+                        background: $primary;
+                        color: $text-default;
+                    }
+                }
+            }
+            .text {
+                line-height: 1.3em;
+                margin-bottom: 10px;
+                color: $text-light;
+                &.name {
+                    font-size: 1.5em;
+                    color: $text-default;
+                }
+            }
+            .box {
+                padding: 10px 30px;
+                > div {
+                    display: flex;
+                    margin-bottom: 20px; 
+                }
+            }
+            
+        }
+        .thumbnail {
+            display: inline-block;
+            width: 100px;
+            margin: 20px;
+			border: 4px solid $primary;
 			border-radius: 100%;
 			overflow: hidden;
-	    	img {width: 100%;height: auto;}
-	    }
-	    .info-form{
-			display: none;
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			min-height: 100%;
-			background: $bgcolor;
-		}
-		.info > p {
-			text-align: center;
-		}
-		.box {
-			text-align: center;
-			>div {
-				display: flex;
-				margin: 20px;
-
-			}
-		}
-	}
+	    	img {width: 100%;height: auto;vertical-align: top;}
+        }
+        .layout {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $bgG;
+            color: $text-default;
+            box-sizing: border-box;
+        }
+    }
 }

@@ -38,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@material-ui/icons": "^4.2.1",
     "browser-sync": "^2.26.7",
     "del": "^4.1.1",
     "docdash": "^1.1.1",
