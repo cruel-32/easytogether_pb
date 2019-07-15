@@ -8,12 +8,6 @@ import Icon from '@material-ui/core/Icon';
 
 
 const MypageForm = ({myInfo, temp, onChange, onCreate, onKeyPress, onToggle, onCancel}) => {
-	const handleCapture = ({ target }) => {
-	    const imagepath = '../../../images/'+target.files[0].name ;
-    	Object.assign(temp, {thumbnail: imagepath});
-    	//$('.form .thumbnail img').attr('src',imagepath);
-    	console.log(target);
-	};
   	return (
     <article className="form layout">
     	<div className="head">
