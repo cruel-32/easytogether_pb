@@ -1,5 +1,5 @@
+import $ from 'jquery';
 import React, {Component} from 'react';
-// import Upload from 'material-ui-upload/Upload';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -7,8 +7,13 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
 
-// import './Form.css';
 const MypageForm = ({myInfo, temp, onChange, onCreate, onKeyPress, onToggle, onCancel}) => {
+	const handleCapture = ({ target }) => {
+	    const imagepath = '../../../images/'+target.files[0].name ;
+    	Object.assign(temp, {thumbnail: imagepath});
+    	//$('.form .thumbnail img').attr('src',imagepath);
+    	console.log(target);
+	};
   	return (
     <article className="form layout">
     	<div className="head">
@@ -16,8 +21,20 @@ const MypageForm = ({myInfo, temp, onChange, onCreate, onKeyPress, onToggle, onC
 			<Button className="btn close" onClick={onCancel}> <Icon className="icon">close</Icon> </Button>
 		</div>
     	<div className="box">
-			<span className="thumbnail"><img src={temp.thumbnail} alt="프로필 이미지"/></span>
-    	</div>
+    		<span className="thumbnail"><img src={temp.thumbnail} alt="프로필 이미지" /></span>
+    		<Button
+			  variant="contained"
+			  component="label"
+			  className="btn upload"
+			  onChange={onChange("thumbnail")}
+			>
+			  <Icon className="icon">cloud_upload</Icon>
+			  <input
+			    type="file"
+			    style={{ display: "none" }}
+			  />
+			</Button>
+		</div>
     	<div className="box">
     		<TextField
 				label="이름"

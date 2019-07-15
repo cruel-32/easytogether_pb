@@ -40,9 +40,11 @@ class Mypage extends Component {
         }
         this.handleChange = name => e => {
             const { temp } = this.state;
+            const str = e.target.value.split('\\');
+            const value = name == "thumbnail" ? this.imagepath + str[str.length-1]: e.target.value
             this.setState({
                 temp : Object.assign(temp, {
-                    [name]: e.target.value, // 인풋 비우고
+                    [name]: value,
                 })
             });
             
