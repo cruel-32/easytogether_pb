@@ -58,13 +58,13 @@ class Mypage extends Component {
             });         
             console.log('handleCreate', myInfo)
         }
-        this.handleCancel = () => {
+        this.handleCancle = () => {
             const { temp, myInfo } = this.state;
             this.setState({
                 temp : Object.assign(temp, myInfo)
             });
             this.handleToggle();
-            console.log('handleCancel')
+            console.log('handleCancle')
         }
         this.handleKeyPress = (e) => {
             // 눌려진 키가 Enter 면 handleCreate 호출
@@ -81,7 +81,7 @@ class Mypage extends Component {
       handleCreate,
       handleKeyPress,
       handleToggle,
-      handleCancel,
+      handleCancle,
  //      handleRemove
     } = this;
     return (
@@ -92,7 +92,7 @@ class Mypage extends Component {
         onChange={handleChange}
         onCreate={handleCreate}
         onToggle={handleToggle}
-        onCancel={handleCancel}
+        onCancle={handleCancle}
         />}>
         <MypageInfo myInfo={myInfo} onToggle={handleToggle} />
         <MypageList myInfo={myInfo} onToggle={handleToggle} />

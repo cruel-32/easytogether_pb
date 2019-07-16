@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -7,12 +6,12 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
 
-const MypageForm = ({myInfo, temp, onChange, onCreate, onKeyPress, onToggle, onCancel}) => {
+const MypageForm = ({temp, onChange, onCreate, onKeyPress, onCancle}) => {
   	return (
     <article className="form layout">
     	<div className="head">
 			<h1>PROFILE<em>settings</em></h1>
-			<Button className="btn close" onClick={onCancel}> <Icon className="icon">close</Icon> </Button>
+			<Button className="btn close" onClick={onCancle}> <Icon className="icon">close</Icon> </Button>
 		</div>
     	<div className="box">
     		<span className="thumbnail"><img src={temp.thumbnail} alt="프로필 이미지" /></span>
