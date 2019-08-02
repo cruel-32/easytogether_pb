@@ -48,5 +48,7 @@ if($wrap.length){
 //mypage
 import Mypage from './Mypage';
 const $mypage = $('#mypage');
-ReactDOM.render(<Mypage />, $mypage[0]);
+if($mypage.length){
+    ReactDOM.render(<Mypage />, $mypage[0]);
+}
 
