@@ -1,6 +1,5 @@
 const { src, dest, series, parallel, watch, lastRun } = require('gulp');
-const gutil = require('gulp-util'),
-    plumber = require('gulp-plumber'),
+const plumber = require('gulp-plumber'),
     newer = require('gulp-newer'),
     fileinclude = require('gulp-file-include'),
     htmlhint = require("gulp-htmlhint"),
@@ -108,7 +107,7 @@ const react = ()=> src(`${origin}/js/react/entry.js`) //, {since: lastRun(react)
 
 const scripts = ()=> src([`${origin}/js/**/*.js`, `!${origin}/js/react/**/*.js`], {since: lastRun(scripts)})
     .pipe(newer(`${project}/js/**/*.js`))
-    .pipe(plumber({errorHandler : gutil.log}))
+    .pipe(plumber())
     .pipe(jshint())
     .pipe(babel({
         presets: ['@babel/env']
