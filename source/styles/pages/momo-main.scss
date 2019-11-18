@@ -1,3 +1,216 @@
 @import '../import/_mixin';
 @import '../import/_variables';
 
+// header block
+.header {
+    // modifier key
+    // 실질적인 styling 코드가 들어가지 않더라도 해당 블록에 들어갈 수 있는 속성값 전부 적어둔다
+    &--pos {
+        // modifier -value
+        // 해당 속성값에 들갈 수 있는 옵션을 전부 적어둔다
+        &-top {
+            margin-top:0;
+        }
+        &-bot {
+            margin-top:0;
+        }
+    }
+    // modifier
+    
+    // element
+    &__logo {
+        margin-top:0;
+    }
+    &__p {
+        margin-top:0;
+    }
+    // element
+}
+
+// search-bar block
+.search-bar {
+    // element
+    &__input {
+        margin-top:0;
+    }
+    &__search-btn {
+        margin-top:0;
+    }
+    &__search-btn {
+        margin-top:0;
+    }
+    &__icon {
+        margin-top:0;
+    }
+    // element
+}
+
+// slide block
+.slide {
+    // modifier
+    &--snap {//슬라이드의 옵션중 스냅을 사용할 경우 들어가는 modifier (배너 슬라이드)
+        margin-top:0;
+    }
+    &--multi {//슬라이드의 옵션중 아이템이 다수 보이는 옵션을 사용할 경우 들어가는 modifier (카테고리 슬라이드)
+        margin-top:0;
+    }
+    // modifier
+
+    // element
+    &__list {
+        margin-top:0;
+    }
+    &__item {
+        margin-top:0;
+    }
+    &__list {
+        margin-top:0;
+    }
+    &__icon-btn {
+        // modifier boolean
+        // 해당 modifier가 있고없고로만 판단 될때 (key-value X)
+        &--active {
+            margin-top:0;
+        }
+    }
+    &__icon {
+        margin-top:0;
+    }
+    &__text {
+        margin-top:0;
+    }
+    // element
+}
+
+// card-view block
+.card-view {
+    // modifier key
+    &--size {
+        // modifier -value
+        &-xl {
+            margin-top:0;
+        }
+        &-lg {
+            margin-top:0;
+        }
+        &-md {
+            margin-top:0;
+        }
+    }
+    // modifier
+
+    // element
+    &__link {
+        margin-top:0;
+    }
+    &__img {
+        margin-top:0;
+    }
+    &__p {
+        //modifier key
+        &--size {
+            //modifier -value
+            &-xl {
+                margin-top:0;
+            }
+            &-md {
+                margin-top:0;
+            }
+        }
+        //modifier key
+    }
+    &__marker {
+        // modifier boolean
+        &--active {
+            margin-top:0;
+        }
+    }
+    &__heart-btn {
+        // modifier boolean
+        &--active {
+            margin-top:0;
+        }
+    }
+    &__link {
+        margin-top:0;
+    }
+    &__img {
+        margin-top:0;
+    }
+    // element
+}
+
+// adding block
+.adding {
+    // modifier key
+    &--size {
+        // modifier -value
+        &-xl {
+            margin-top:0;
+        }
+        &-md {
+            margin-top:0;
+        }
+    }
+    // modifier
+
+    // element
+    &__icon {
+        margin-top:0;
+    }
+    &__text {
+        margin-top:0;
+    }
+    // element
+
+}
+
+// tabs block
+.tabs {
+    // element
+    &__list {
+        margin-top:0;
+    }
+    &__item {
+        // modifier boolean
+        &--active {
+            margin-top:0;
+        }
+    }
+    // element
+}
+
+// lists block
+.lists {
+    // element
+    &__list {
+        margin-top:0;
+    }
+    &__item {
+        // modifier key
+        &--line {
+            // modifier -value
+            &-top {
+                margin-top:0;
+            }
+        }
+    }
+    &__index {
+        margin-top:0;
+    }
+    &__img {
+        margin-top:0;
+    }
+    &__contents {
+        margin-top:0;
+    }
+    &__p {
+        &--size {
+            &-xl {
+                margin-top:0;
+            }
+        }
+    }
+
+    // element
+}
